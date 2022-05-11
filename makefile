@@ -18,3 +18,9 @@ pruebas: src/*.c pruebas.c
 
 clean:
 	rm -f ejemplo *.o pruebas 2>&1
+
+valgrind-interactivo: interactivo
+	valgrind ./interactivo
+
+interactivo: *.c *.h
+	$(CC) $(CFLAGS) src/abb.c mostrar_abb.c interactivo.c -o interactivo 2>&1

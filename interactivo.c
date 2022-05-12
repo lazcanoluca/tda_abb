@@ -22,7 +22,7 @@ void destruir_int(void* i){
 int main(int argc, char* argv[]){
   abb_t* abb = abb_crear(comparar_int);
 
-  printf("\n+<valor> inserta un valor, -<valor> elimina un valor, ?<valor> bsuca un valor, m muestra el arbol, q sale.\nLos valores deben estar entre 1 y 99, plis.\n");
+  printf("\n+<valor> inserta un valor, -<valor> elimina un valor, ?<valor> busca un valor, m muestra el arbol, q sale.\nLos valores deben estar entre 1 y 99, plis.\n");
 
   while(1){
 

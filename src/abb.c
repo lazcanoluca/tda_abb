@@ -2,6 +2,8 @@
 #include <stddef.h>
 #include <stdlib.h>
 
+#define LARGO(x) (sizeof(x) / sizeof(x)[0])
+
 #include <stdio.h>
 
 abb_t *abb_crear(abb_comparador comparador)
@@ -65,8 +67,6 @@ nodo_abb_t *nodo_max(nodo_abb_t *raiz)
 {
 	return !raiz->derecha ? raiz : nodo_max(raiz->derecha);
 }
-
-
 
 nodo_abb_t *nodo_abb_quitar(nodo_abb_t *raiz, void *elemento, abb_comparador comparador, size_t *tamanio, void **quitado)
 {
@@ -177,8 +177,76 @@ size_t abb_con_cada_elemento(abb_t *arbol, abb_recorrido recorrido,
 	return 0;
 }
 
+// void agregar_elemento(void **array, int posicion)
+// {
+
+// }
+
+void inorden(nodo_abb_t *raiz, void **array, size_t tamanio_array, size_t *elementos_recorridos)
+{
+	if (!raiz || *elementos_recorridos == tamanio_array) return;
+
+	if (raiz->izquierda) inorden(raiz->izquierda, array, tamanio_array, elementos_recorridos);
+
+	array[*elementos_recorridos] = raiz->elemento;
+	(*elementos_recorridos)++;
+	// agregar_elemento(array, *elementos_rec
+
+	if (raiz->derecha) inorden(raiz->derecha, array, tamanio_array, elementos_recorridos);
+}
+
+void preorden(nodo_abb_t *raiz, void **array, size_t tamanio_array, size_t *elementos_recorridos)
+{
+	if (!raiz || *elementos_recorridos == tamanio_array) return;
+
+	if (raiz->izquierda) preorden(raiz->izquierda, array, tamanio_array, elementos_recorridos);
+
+	if (raiz->derecha) preorden(raiz->derecha, array, tamanio_array, elementos_recorridos);
+
+	array[*elementos_recorridos] = raiz->elemento;
+	(*elementos_recorridos)++;
+
+}
+
+void postorden(nodo_abb_t *raiz, void **array, size_t tamanio_array, size_t *elementos_recorridos)
+{
+	if (!raiz || *elementos_recorridos == tamanio_array) return;
+
+	array[*elementos_recorridos] = raiz->elemento;
+	(*elementos_recorridos)++;
+
+	if (raiz->izquierda) postorden(raiz->izquierda, array, tamanio_array, elementos_recorridos);
+
+	if (raiz->derecha) postorden(raiz->derecha, array, tamanio_array, elementos_recorridos);
+}
+
 size_t abb_recorrer(abb_t *arbol, abb_recorrido recorrido, void **array,
 		    size_t tamanio_array)
 {
+	if (!arbol) return 0;
+
+	size_t elementos_recorridos = 0;
+
+	switch (recorrido) {
+		case INORDEN:
+			inorden(arbol->nodo_raiz, array, tamanio_array, &elementos_recorridos);
+			return elementos_recorridos;
+			break;
+		
+		case PREORDEN:
+			preorden(arbol->nodo_raiz, array, tamanio_array, &elementos_recorridos);
+			return elementos_recorridos;
+			break;
+		
+		case POSTORDEN:
+			postorden(arbol->nodo_raiz, array, tamanio_array, &elementos_recorridos);
+			return elementos_recorridos;
+			break;
+
+		default:
+			return 0;
+			break;
+	}
+
 	return 0;
 }

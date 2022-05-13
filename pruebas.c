@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include "pa2mm.h"
 #include "string.h"
+#include <stdbool.h>
+
+#define MAX_ARRAY 9
 
 int comparador(void* _i1, void* _i2){
   int* i1=_i1;
@@ -84,6 +87,73 @@ void buscar_elementos()
 
 }
 
+void probar_recorridos()
+{
+	abb_t *arbol_prueba = abb_crear(comparador);
+	int elementos[] = {15, 13, 23, 10, 7, 14, 19, 29, 17};
+
+	abb_insertar(arbol_prueba, &elementos[0]);
+	abb_insertar(arbol_prueba, &elementos[1]);
+	abb_insertar(arbol_prueba, &elementos[2]);
+	abb_insertar(arbol_prueba, &elementos[3]);
+	abb_insertar(arbol_prueba, &elementos[4]);
+	abb_insertar(arbol_prueba, &elementos[5]);
+	abb_insertar(arbol_prueba, &elementos[6]);
+	abb_insertar(arbol_prueba, &elementos[7]);
+	abb_insertar(arbol_prueba, &elementos[8]);
+
+	void *elementos_inorden[MAX_ARRAY];
+	void *elementos_preorden[MAX_ARRAY];
+	void *elementos_postorden[MAX_ARRAY];
+
+	pa2m_afirmar(abb_recorrer(arbol_prueba, INORDEN, elementos_inorden, MAX_ARRAY) == 9, "Se recorrieron 9 elementos inorden.");
+	pa2m_afirmar(abb_recorrer(arbol_prueba, PREORDEN, elementos_preorden, MAX_ARRAY) == 9, "Se recorrieron 9 elementos preorden.");
+	pa2m_afirmar(abb_recorrer(arbol_prueba, POSTORDEN, elementos_postorden, MAX_ARRAY) == 9, "Se recorrieron 9 elementos postorden.");
+	
+	int esperado_inorden[] = {7, 10, 13, 14, 15, 17, 19, 23, 29};
+	int esperado_preorden[] = {7, 10, 14, 13, 17, 19, 29, 23, 15};
+	int esperado_postorden[] = {15, 13, 10, 7, 14, 23, 19, 17, 29};
+
+
+	bool flag_inorden = true;
+
+	printf("Elementos inorden: [ ");
+	for (int i = 0; i < MAX_ARRAY; i++) {
+		printf("%i", *(int *)elementos_inorden[i]);
+		if (i < MAX_ARRAY - 1) printf(", ");
+		if (*(int *)elementos_inorden[i] != esperado_inorden[i]) flag_inorden = false;
+	}
+	printf(" ]\n");
+
+	pa2m_afirmar(flag_inorden, "Los elementos salieron en inorden.");
+
+
+	bool flag_preorden = true;
+
+	printf("Elementos preorden: [ ");
+	for (int i = 0; i < MAX_ARRAY; i++) {
+		printf("%i", *(int *)elementos_preorden[i]);
+		if (i < MAX_ARRAY - 1) printf(", ");
+		if (*(int *)elementos_preorden[i] != esperado_preorden[i]) flag_preorden = false;
+	}
+	printf(" ]\n");
+
+	pa2m_afirmar(flag_preorden, "Los elementos salieron en preorden.");
+
+
+	bool flag_postorden = true;
+
+	printf("Elementos postorden: [ ");
+	for (int i = 0; i < MAX_ARRAY; i++) {
+		printf("%i", *(int *)elementos_postorden[i]);
+		if (i < MAX_ARRAY - 1) printf(", ");
+		if (*(int *)elementos_postorden[i] != esperado_postorden[i]) flag_postorden = false;
+	}
+	printf(" ]\n");
+
+	pa2m_afirmar(flag_postorden, "Los elementos salieron en postorden.");
+}
+
 int main()
 {
 	pa2m_nuevo_grupo("Pruebas de ABB");
@@ -96,6 +166,9 @@ int main()
 
 	pa2m_nuevo_grupo("Pruebas buscar elemento");
 	buscar_elementos();
+
+	pa2m_nuevo_grupo("Pruebas recorridos");
+	probar_recorridos();
 
 	return pa2m_mostrar_reporte();
 }

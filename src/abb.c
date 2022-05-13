@@ -66,6 +66,8 @@ nodo_abb_t *nodo_max(nodo_abb_t *raiz)
 	return !raiz->derecha ? raiz : nodo_max(raiz->derecha);
 }
 
+
+
 nodo_abb_t *nodo_abb_quitar(nodo_abb_t *raiz, void *elemento, abb_comparador comparador, size_t *tamanio, void **quitado)
 {
 	if (!raiz || !elemento) return NULL;
@@ -79,12 +81,14 @@ nodo_abb_t *nodo_abb_quitar(nodo_abb_t *raiz, void *elemento, abb_comparador com
 			// free(raiz);
 			*quitado = raiz->elemento;
 			raiz = NULL;
+			(*tamanio)--;
 		}
 		// Caso 2.1: El nodo tiene un hijo derecho.
 		else if (!raiz->izquierda) {
 			// nodo_abb_t *aux = raiz;
 			*quitado = raiz->elemento;
 			raiz = raiz->derecha;
+			(*tamanio)--;
 			// free(aux);
 		}
 		// Caso 2.2: El nodo tiene un hijo izquierdo.
@@ -92,6 +96,7 @@ nodo_abb_t *nodo_abb_quitar(nodo_abb_t *raiz, void *elemento, abb_comparador com
 			// nodo_abb_t *aux = raiz;
 			*quitado = raiz->elemento;
 			raiz = raiz->izquierda;
+			(*tamanio)--;
 			// free(aux);
 		}
 		// Caso 3: El nodo tiene dos hijos.
@@ -99,10 +104,12 @@ nodo_abb_t *nodo_abb_quitar(nodo_abb_t *raiz, void *elemento, abb_comparador com
 			nodo_abb_t *aux = nodo_max(raiz->izquierda);
 			*quitado = raiz->elemento;
 			raiz->elemento = aux->elemento;
-			raiz->izquierda = nodo_abb_quitar(raiz->izquierda, aux->elemento, comparador, tamanio, quitado);
+			void *puntero_residuo = malloc(sizeof(void *));
+			raiz->izquierda = nodo_abb_quitar(raiz->izquierda, aux->elemento, comparador, tamanio, puntero_residuo);
+			free(puntero_residuo);
 			// free(aux);
 		}
-		return raiz;
+		// return raiz;
 	}
 
 	// Caso recursivo: buscamos el nodo con el elemento a eliminar.

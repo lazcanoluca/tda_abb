@@ -65,6 +65,25 @@ void quitar_elementos()
 
 }
 
+void buscar_elementos()
+{
+	abb_t *arbol_prueba = abb_crear(comparador);
+	int a = 7, b = 10, c = 13, d = 14, e = 15, f = 17, g = 19, h = 23, i = 29;
+	abb_insertar(arbol_prueba, &e);
+	abb_insertar(arbol_prueba, &c);
+	abb_insertar(arbol_prueba, &h);
+	abb_insertar(arbol_prueba, &b);
+	abb_insertar(arbol_prueba, &a);
+	abb_insertar(arbol_prueba, &d);
+	abb_insertar(arbol_prueba, &g);
+	abb_insertar(arbol_prueba, &i);
+	abb_insertar(arbol_prueba, &f);
+
+	pa2m_afirmar(*(int *)abb_buscar(arbol_prueba, &g) == 19, "El elemento encontrado es 19.");
+	pa2m_afirmar(*(int *)abb_buscar(arbol_prueba, &c) == 13, "El elemento encontrado es 13.");
+
+}
+
 int main()
 {
 	pa2m_nuevo_grupo("Pruebas de ABB");
@@ -74,6 +93,9 @@ int main()
 
 	pa2m_nuevo_grupo("Pruebas de inserción de elementos");
 	insercion_de_elementos();
+
+	pa2m_nuevo_grupo("Pruebas buscar elemento");
+	buscar_elementos();
 
 	return pa2m_mostrar_reporte();
 }

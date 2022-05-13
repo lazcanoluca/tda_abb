@@ -15,27 +15,6 @@ abb_t *abb_crear(abb_comparador comparador)
 	return arbol;
 }
 
-// void nodo_abb_insertar(nodo_abb_t **raiz, void *elemento, abb_comparador comparador, size_t *tamanio)
-// {
-// 	if (!*raiz) {
-// 		nodo_abb_t *nueva_hoja = calloc(1, sizeof(nodo_abb_t));
-// 		if (!nueva_hoja) return;
-
-// 		nueva_hoja->elemento = elemento;
-// 		*raiz = nueva_hoja;
-// 		(*tamanio)++;
-
-// 		return;
-// 	}
-
-// 	if (comparador(elemento, (*raiz)->elemento) <= 0) {
-// 		nodo_abb_insertar(&(*raiz)->izquierda, elemento, comparador, tamanio);
-// 	} else {
-// 		nodo_abb_insertar(&(*raiz)->derecha, elemento, comparador, tamanio);
-// 	}
-// 	return;
-// }
-
 nodo_abb_t *nodo_abb_insertar(nodo_abb_t *raiz, void *elemento, abb_comparador comparador, size_t *tamanio)
 {
 	if (!raiz) {
@@ -83,58 +62,69 @@ nodo_abb_t *nodo_abb_buscar(nodo_abb_t *raiz, void *elemento, abb_comparador com
 
 }
 
-// nodo_abb_t *nodo_abb_buscar_padre(nodo_abb_t *raiz, void *elemento, abb_comparador comparador)
-// {
-// 	if (!raiz || !elemento) return NULL;
+nodo_abb_t *nodo_max(nodo_abb_t *raiz)
+{
+	return !raiz->derecha ? raiz : nodo_max(raiz->derecha);
+}
 
-// 	if (comparador(elemento, raiz->derecha->elemento) == 0 ||
-// 		comparador(elemento, raiz->izquierda->elemento) == 0)
-// 		return raiz;
-// 	else if (comparador(elemento, raiz->elemento) < 0)
-// 		return nodo_abb_buscar_padre(raiz->izquierda, elemento, comparador);
-// 	else if (comparador(elemento, raiz->elemento) > 0)
-// 		return nodo_abb_buscar_padre(raiz->derecha, elemento, comparador);
-	
-// 	return NULL;
-// }
+nodo_abb_t *nodo_abb_quitar(nodo_abb_t *raiz, void *elemento, abb_comparador comparador, size_t *tamanio, void **quitado)
+{
+	if (!raiz || !elemento) return NULL;
 
-// int cantidad_hijos(nodo_abb_t *nodo)
-// {
-// 	if (!nodo) return -1;
-// 	else if (nodo->derecha != NULL && nodo->izquierda != NULL) return 2;
-// 	else if (nodo->derecha == NULL && nodo->izquierda == NULL) return 0;
-// 	else return 1;
-// }
+	int comparacion = comparador(elemento, raiz->elemento);
+
+	// Caso base: el nodo a eliminar es el corriente.
+	if (comparacion == 0) {
+		// Caso 1: El nodo no tiene hijos (es hoja).
+		if (!raiz->izquierda && !raiz->derecha) {
+			// free(raiz);
+			*quitado = raiz->elemento;
+			raiz = NULL;
+		}
+		// Caso 2.1: El nodo tiene un hijo derecho.
+		else if (!raiz->izquierda) {
+			// nodo_abb_t *aux = raiz;
+			*quitado = raiz->elemento;
+			raiz = raiz->derecha;
+			// free(aux);
+		}
+		// Caso 2.2: El nodo tiene un hijo izquierdo.
+		else if (!raiz->derecha) {
+			// nodo_abb_t *aux = raiz;
+			*quitado = raiz->elemento;
+			raiz = raiz->izquierda;
+			// free(aux);
+		}
+		// Caso 3: El nodo tiene dos hijos.
+		else {
+			nodo_abb_t *aux = nodo_max(raiz->izquierda);
+			*quitado = raiz->elemento;
+			raiz->elemento = aux->elemento;
+			raiz->izquierda = nodo_abb_quitar(raiz->izquierda, aux->elemento, comparador, tamanio, quitado);
+			// free(aux);
+		}
+		return raiz;
+	}
+
+	// Caso recursivo: buscamos el nodo con el elemento a eliminar.
+	if (comparacion < 0) {
+		raiz->izquierda = nodo_abb_quitar(raiz->izquierda, elemento, comparador, tamanio, quitado);
+	} else if (comparacion > 0) {
+		raiz->derecha = nodo_abb_quitar(raiz->derecha, elemento, comparador, tamanio, quitado);
+	}
+
+	return raiz;
+}
 
 void *abb_quitar(abb_t *arbol, void *elemento)
 {
-	// // nodo_abb_t *nodo_a_quitar = nodo_abb_buscar(arbol->nodo_raiz, elemento, arbol->comparador);
-	// nodo_abb_t *nodo_padre = nodo_abb_buscar_padre(arbol->nodo_raiz, elemento, arbol->comparador);
-	// if (!nodo_padre) return NULL;
-	// nodo_abb_t *nodo_a_quitar;
-	// nodo_abb_t **puntero;
+	if (!arbol || !elemento) return NULL;
 
-	// if (comparador(elemento, nodo_padre->elemento) < 0) {
-	// 	nodo_a_quitar = nodo_padre->izquierda;
-	// 	puntero = &nodo_padre->izquierda;
-	// } else {
-	// 	nodo_a_quitar = nodo_padre->derecha;
-	// 	puntero = &nodo_padre->derecha;
-	// }
+	void *quitado;
 
-	// if (cantidad_hijos(nodo_a_quitar) == 0) {
-	// 	*puntero = NULL;
-	// 	free(nodo_a_quitar);
-	// } else if (cantidad_hijos(nodo_a_quitar) == 1) {
-	// 	*puntero = nodo_a_quitar->izquierda != NULL ?
-	// 		nodo_a_quitar->izquierda :
-	// 		nodo_a_quitar->derecha;
-	// 	free(nodo_a_quitar);
-	// } else if (cantidad_hijos(nodo_a_quitar) == 2) {
+	arbol->nodo_raiz = nodo_abb_quitar(arbol->nodo_raiz, elemento, arbol->comparador, &arbol->tamanio, &quitado);
 
-	// }
-
-	return NULL;
+	return quitado;
 }
 
 void *abb_buscar(abb_t *arbol, void *elemento)

@@ -170,5 +170,6 @@ int main()
 	pa2m_nuevo_grupo("Pruebas recorridos");
 	probar_recorridos();
 
+
 	return pa2m_mostrar_reporte();
 }

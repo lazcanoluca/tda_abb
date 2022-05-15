@@ -1,9 +1,6 @@
 #include "abb.h"
 #include <stddef.h>
 #include <stdlib.h>
-
-#define LARGO(x) (sizeof(x) / sizeof(x)[0])
-
 #include <stdio.h>
 
 abb_t *abb_crear(abb_comparador comparador)

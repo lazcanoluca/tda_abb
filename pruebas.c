@@ -18,6 +18,8 @@ void creacion_de_arbol_nulo()
 	pa2m_afirmar(arbol_prueba != NULL, "El árbol creado existe.");
 	pa2m_afirmar(arbol_prueba->nodo_raiz == NULL, "La raíz apunta a NULL.");
 	pa2m_afirmar(arbol_prueba->tamanio == 0, "El tamaño del árbol es 0.");
+
+	abb_destruir(arbol_prueba);
 }
 
 void insercion_de_elementos()
@@ -42,6 +44,8 @@ void insercion_de_elementos()
 	pa2m_afirmar(*(int *)arbol_prueba->nodo_raiz->izquierda->izquierda->elemento == 10, "El elemento de la izquierda izquierda es 10.");
 	pa2m_afirmar(*(int *)arbol_prueba->nodo_raiz->izquierda->izquierda->izquierda->elemento == 7, "El elemento de la izquierda izquierda izquierda es 7.");
 	pa2m_afirmar(*(int *)arbol_prueba->nodo_raiz->derecha->izquierda->izquierda->elemento == 17, "El elemento de la derecha izquierda izquierda es 17.");
+
+	abb_destruir(arbol_prueba);
 }
 
 void quitar_elementos()
@@ -65,7 +69,7 @@ void quitar_elementos()
 	pa2m_afirmar(*(int *)abb_quitar(arbol_prueba, &h) == 17, "El elemento quitado es 23.");
 	pa2m_afirmar(*(int *)arbol_prueba->nodo_raiz->derecha->elemento == 19, "El elemento de la derecha es 19.");
 
-
+	abb_destruir(arbol_prueba);
 }
 
 void buscar_elementos()
@@ -85,6 +89,7 @@ void buscar_elementos()
 	pa2m_afirmar(*(int *)abb_buscar(arbol_prueba, &g) == 19, "El elemento encontrado es 19.");
 	pa2m_afirmar(*(int *)abb_buscar(arbol_prueba, &c) == 13, "El elemento encontrado es 13.");
 
+	abb_destruir(arbol_prueba);
 }
 
 void probar_recorridos()
@@ -152,6 +157,8 @@ void probar_recorridos()
 	printf(" ]\n");
 
 	pa2m_afirmar(flag_postorden, "Los elementos salieron en postorden.");
+
+	abb_destruir(arbol_prueba);
 }
 
 int main()

@@ -64,14 +64,14 @@ nodo_abb_t *nodo_abb_quitar(nodo_abb_t *raiz, void *elemento, abb_comparador com
 			*quitado = raiz->elemento;
 			free(raiz);
 			raiz = NULL;
-			(*tamanio)--;
+			if (tamanio != NULL) (*tamanio)--;
 		}
 		// Caso 2.1: El nodo tiene un hijo derecho.
 		else if (!raiz->izquierda) {
 			nodo_abb_t *aux = raiz;
 			*quitado = raiz->elemento;
 			raiz = raiz->derecha;
-			(*tamanio)--;
+			if (tamanio != NULL) (*tamanio)--;
 			free(aux);
 		}
 		// Caso 2.2: El nodo tiene un hijo izquierdo.
@@ -79,7 +79,7 @@ nodo_abb_t *nodo_abb_quitar(nodo_abb_t *raiz, void *elemento, abb_comparador com
 			nodo_abb_t *aux = raiz;
 			*quitado = raiz->elemento;
 			raiz = raiz->izquierda;
-			(*tamanio)--;
+			if (tamanio != NULL) (*tamanio)--;
 			free(aux);
 		}
 		// Caso 3: El nodo tiene dos hijos.
@@ -88,9 +88,9 @@ nodo_abb_t *nodo_abb_quitar(nodo_abb_t *raiz, void *elemento, abb_comparador com
 			*quitado = raiz->elemento;
 			raiz->elemento = aux->elemento;
 			void *puntero_residuo = malloc(sizeof(void *));
-			raiz->izquierda = nodo_abb_quitar(raiz->izquierda, aux->elemento, comparador, tamanio, puntero_residuo);
+			raiz->izquierda = nodo_abb_quitar(raiz->izquierda, aux->elemento, comparador, NULL, puntero_residuo);
 			free(puntero_residuo);
-			(*tamanio)--;
+			if (tamanio != NULL) (*tamanio)--;
 			// free(aux);
 		}
 		// return raiz;
@@ -170,40 +170,58 @@ void abb_destruir_todo(abb_t *arbol, void (*destructor)(void *))
 	free(arbol);
 }
 
-void inorden_para_cada(nodo_abb_t *raiz, bool (*funcion)(void *, void *), void *aux, size_t *funcion_invocaciones)
+bool inorden_para_cada(nodo_abb_t *raiz, bool (*funcion)(void *, void *), void *aux, size_t *funcion_invocaciones)
 {
-	if (!raiz) return;
+	if (!raiz) return true;
 
-	if (raiz->izquierda) inorden_para_cada(raiz->izquierda, funcion, aux, funcion_invocaciones);
+	if (raiz->izquierda) {
+		if (!inorden_para_cada(raiz->izquierda, funcion, aux, funcion_invocaciones)) return false;
+	}
 
-	if (!funcion(raiz->elemento, aux)) return;
+	if (!funcion(raiz->elemento, aux)) return false;
 	(*funcion_invocaciones)++;
 
-	if (raiz->derecha) inorden_para_cada(raiz->derecha, funcion, aux, funcion_invocaciones);
+	if (raiz->derecha){
+		if (!inorden_para_cada(raiz->derecha, funcion, aux, funcion_invocaciones)) return false;
+	}
+
+	return true;
 }
 
-void postorden_para_cada(nodo_abb_t *raiz, bool (*funcion)(void *, void *), void *aux, size_t *funcion_invocaciones)
+bool postorden_para_cada(nodo_abb_t *raiz, bool (*funcion)(void *, void *), void *aux, size_t *funcion_invocaciones)
 {
-	if (!raiz) return;
+	if (!raiz) return true;
 
-	if (raiz->izquierda) postorden_para_cada(raiz->izquierda, funcion, aux, funcion_invocaciones);
+	if (raiz->izquierda) {
+		if (!postorden_para_cada(raiz->izquierda, funcion, aux, funcion_invocaciones)) return false;
+	}
 
-	if (raiz->derecha) postorden_para_cada(raiz->derecha, funcion, aux, funcion_invocaciones);
-
-	if (!funcion(raiz->elemento, aux)) return;
+	if (!funcion(raiz->elemento, aux)) return false;
 	(*funcion_invocaciones)++;
+
+	if (raiz->derecha){
+		if (!postorden_para_cada(raiz->derecha, funcion, aux, funcion_invocaciones)) return false;
+	}
+
+	return true;
 }
 
-void preorden_para_cada(nodo_abb_t *raiz, bool (*funcion)(void *, void *), void *aux, size_t *funcion_invocaciones)
+bool preorden_para_cada(nodo_abb_t *raiz, bool (*funcion)(void *, void *), void *aux, size_t *funcion_invocaciones)
 {
-	if (!raiz) return;
+	if (!raiz) return true;
 
-	if (!funcion(raiz->elemento, aux)) return;
+	if (raiz->izquierda) {
+		if (!preorden_para_cada(raiz->izquierda, funcion, aux, funcion_invocaciones)) return false;
+	}
+
+	if (!funcion(raiz->elemento, aux)) return false;
 	(*funcion_invocaciones)++;
 
-	if (raiz->izquierda) preorden_para_cada(raiz->izquierda, funcion, aux, funcion_invocaciones);
+	if (raiz->derecha){
+		if (!preorden_para_cada(raiz->derecha, funcion, aux, funcion_invocaciones)) return false;
+	}
 
-	if (raiz->derecha) preorden_para_cada(raiz->derecha, funcion, aux, funcion_invocaciones);
+	return true;
 }
 
 size_t abb_con_cada_elemento(abb_t *arbol, abb_recorrido recorrido,

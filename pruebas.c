@@ -65,8 +65,8 @@ void quitar_elementos()
 	pa2m_afirmar(*(int *)abb_quitar(arbol_prueba, &b) == 10, "El elemento quitado es 10.");
 	pa2m_afirmar(*(int *)arbol_prueba->nodo_raiz->izquierda->izquierda->elemento == 7, "El elemento de la izquierda izquierda es 7.");
 	pa2m_afirmar(*(int *)abb_quitar(arbol_prueba, &f) == 17, "El elemento quitado es 17.");
-	pa2m_afirmar(arbol_prueba->nodo_raiz->derecha->izquierda == NULL, "El elemento de la derecha izquierda no tiene izqueirda.");
-	pa2m_afirmar(*(int *)abb_quitar(arbol_prueba, &h) == 17, "El elemento quitado es 23.");
+	pa2m_afirmar(arbol_prueba->nodo_raiz->derecha->izquierda->izquierda == NULL, "El elemento de la derecha izquierda no tiene izquierda.");
+	pa2m_afirmar(*(int *)abb_quitar(arbol_prueba, &h) == 23, "El elemento quitado es 23.");
 	pa2m_afirmar(*(int *)arbol_prueba->nodo_raiz->derecha->elemento == 19, "El elemento de la derecha es 19.");
 
 	abb_destruir(arbol_prueba);
@@ -170,6 +170,9 @@ int main()
 
 	pa2m_nuevo_grupo("Pruebas de inserción de elementos");
 	insercion_de_elementos();
+
+	pa2m_nuevo_grupo("Pruebas de quitar elementos");
+	quitar_elementos();
 
 	pa2m_nuevo_grupo("Pruebas buscar elemento");
 	buscar_elementos();

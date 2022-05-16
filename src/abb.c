@@ -166,6 +166,7 @@ void nodo_abb_destruir_todo(nodo_abb_t *raiz, void (*destructor)(void *))
 
 void abb_destruir_todo(abb_t *arbol, void (*destructor)(void *))
 {
+	if (!arbol) return;
 	nodo_abb_destruir_todo(arbol->nodo_raiz, destructor);
 	free(arbol);
 }
@@ -196,13 +197,13 @@ bool postorden_para_cada(nodo_abb_t *raiz, bool (*funcion)(void *, void *), void
 		if (!postorden_para_cada(raiz->izquierda, funcion, aux, funcion_invocaciones)) return false;
 	}
 
-	if (!funcion(raiz->elemento, aux)) return false;
-	(*funcion_invocaciones)++;
-
 	if (raiz->derecha){
 		if (!postorden_para_cada(raiz->derecha, funcion, aux, funcion_invocaciones)) return false;
 	}
 
+	if (!funcion(raiz->elemento, aux)) return false;
+	(*funcion_invocaciones)++;
+	
 	return true;
 }
 
@@ -210,12 +211,12 @@ bool preorden_para_cada(nodo_abb_t *raiz, bool (*funcion)(void *, void *), void 
 {
 	if (!raiz) return true;
 
+	if (!funcion(raiz->elemento, aux)) return false;
+	(*funcion_invocaciones)++;
+
 	if (raiz->izquierda) {
 		if (!preorden_para_cada(raiz->izquierda, funcion, aux, funcion_invocaciones)) return false;
 	}
-
-	if (!funcion(raiz->elemento, aux)) return false;
-	(*funcion_invocaciones)++;
 
 	if (raiz->derecha){
 		if (!preorden_para_cada(raiz->derecha, funcion, aux, funcion_invocaciones)) return false;
@@ -268,25 +269,24 @@ void preorden(nodo_abb_t *raiz, void **array, size_t tamanio_array, size_t *elem
 {
 	if (!raiz || *elementos_recorridos == tamanio_array) return;
 
-	if (raiz->izquierda) preorden(raiz->izquierda, array, tamanio_array, elementos_recorridos);
-
-	if (raiz->derecha) preorden(raiz->derecha, array, tamanio_array, elementos_recorridos);
-
 	array[*elementos_recorridos] = raiz->elemento;
 	(*elementos_recorridos)++;
 
+	if (raiz->izquierda) preorden(raiz->izquierda, array, tamanio_array, elementos_recorridos);
+
+	if (raiz->derecha) preorden(raiz->derecha, array, tamanio_array, elementos_recorridos);
 }
 
 void postorden(nodo_abb_t *raiz, void **array, size_t tamanio_array, size_t *elementos_recorridos)
 {
 	if (!raiz || *elementos_recorridos == tamanio_array) return;
 
-	array[*elementos_recorridos] = raiz->elemento;
-	(*elementos_recorridos)++;
-
 	if (raiz->izquierda) postorden(raiz->izquierda, array, tamanio_array, elementos_recorridos);
 
 	if (raiz->derecha) postorden(raiz->derecha, array, tamanio_array, elementos_recorridos);
+
+	array[*elementos_recorridos] = raiz->elemento;
+	(*elementos_recorridos)++;
 }
 
 size_t abb_recorrer(abb_t *arbol, abb_recorrido recorrido, void **array, size_t tamanio_array)

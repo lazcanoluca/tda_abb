@@ -2,8 +2,8 @@ Archivos Entregados
 ===================
 
 [01;34m.[00m
-├── [4.8K]  ejemplo.c
-├── [6.6K]  pruebas.c
+├── [ 697]  makefile
+├── [6.8K]  pruebas.c
 └── [  80]  [01;34msrc[00m
     ├── [8.0K]  abb.c
     └── [3.4K]  abb.h
@@ -17,11 +17,11 @@ rm -f *.o pruebas_chanutron
 gcc -std=c99 -Wall -Wconversion -Wtype-limits -pedantic -Werror -O2 -g src/*.c pruebas_chanutron.c -o pruebas_chanutron
 rm -f *.c
 valgrind --leak-check=full --track-origins=yes --show-reachable=yes --error-exitcode=2 --show-leak-kinds=all --trace-children=yes ./pruebas_chanutron
-==17006== Memcheck, a memory error detector
-==17006== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==17006== Using Valgrind-3.19.0 and LibVEX; rerun with -h for copyright info
-==17006== Command: ./pruebas_chanutron
-==17006== 
+==17739== Memcheck, a memory error detector
+==17739== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==17739== Using Valgrind-3.19.0 and LibVEX; rerun with -h for copyright info
+==17739== Command: ./pruebas_chanutron
+==17739== 
 [33;1m
 Pruebas de creación de ABB
 ===========================[37;1m
@@ -29,15 +29,15 @@ Pruebas de creación de ABB
 [32;1m✓ [37;1mEl abb se crea vacío
 [32;1m✓ [37;1mLa cantidad de elementos es cero
 [32;1m✓ [37;1mEl elemento raíz es NULL
-==17007== 
-==17007== HEAP SUMMARY:
-==17007==     in use at exit: 0 bytes in 0 blocks
-==17007==   total heap usage: 1 allocs, 1 frees, 12 bytes allocated
-==17007== 
-==17007== All heap blocks were freed -- no leaks are possible
-==17007== 
-==17007== For lists of detected and suppressed errors, rerun with: -s
-==17007== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17740== 
+==17740== HEAP SUMMARY:
+==17740==     in use at exit: 0 bytes in 0 blocks
+==17740==   total heap usage: 1 allocs, 1 frees, 12 bytes allocated
+==17740== 
+==17740== All heap blocks were freed -- no leaks are possible
+==17740== 
+==17740== For lists of detected and suppressed errors, rerun with: -s
+==17740== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Pruebas de inserción
 =====================[37;1m
@@ -62,15 +62,15 @@ Pruebas de inserción
 [32;1m✓ [37;1mEl hijo derecho del raíz ahora tiene un hijo derecho.
 [32;1m✓ [37;1mEl elemento tiene el valor esperado.
 [32;1m✓ [37;1mLa cantidad de elementos es 5
-==17008== 
-==17008== HEAP SUMMARY:
-==17008==     in use at exit: 0 bytes in 0 blocks
-==17008==   total heap usage: 6 allocs, 6 frees, 72 bytes allocated
-==17008== 
-==17008== All heap blocks were freed -- no leaks are possible
-==17008== 
-==17008== For lists of detected and suppressed errors, rerun with: -s
-==17008== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17741== 
+==17741== HEAP SUMMARY:
+==17741==     in use at exit: 0 bytes in 0 blocks
+==17741==   total heap usage: 6 allocs, 6 frees, 72 bytes allocated
+==17741== 
+==17741== All heap blocks were freed -- no leaks are possible
+==17741== 
+==17741== For lists of detected and suppressed errors, rerun with: -s
+==17741== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Pruebas de búsqueda
 ====================[37;1m
@@ -85,15 +85,15 @@ Pruebas de búsqueda
 [32;1m✓ [37;1mBusco un elemento existente y lo encuentro
 [32;1m✓ [37;1mBusco un elemento existente y lo encuentro
 [32;1m✓ [37;1mBuscar un elemento inexistente devuelve NULL.
-==17009== 
-==17009== HEAP SUMMARY:
-==17009==     in use at exit: 0 bytes in 0 blocks
-==17009==   total heap usage: 11 allocs, 11 frees, 132 bytes allocated
-==17009== 
-==17009== All heap blocks were freed -- no leaks are possible
-==17009== 
-==17009== For lists of detected and suppressed errors, rerun with: -s
-==17009== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17742== 
+==17742== HEAP SUMMARY:
+==17742==     in use at exit: 0 bytes in 0 blocks
+==17742==   total heap usage: 11 allocs, 11 frees, 132 bytes allocated
+==17742== 
+==17742== All heap blocks were freed -- no leaks are possible
+==17742== 
+==17742== For lists of detected and suppressed errors, rerun with: -s
+==17742== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Pruebas de borrado
 ==================[37;1m
@@ -121,15 +121,15 @@ Pruebas de borrado
 [32;1m✓ [37;1mLa cantidad de elementos es 0
 [32;1m✓ [37;1mNo queda nadie en la raíz, abb vacío.
 [32;1m✓ [37;1mLa funcion abb_vacio devuelve true.
-==17010== 
-==17010== HEAP SUMMARY:
-==17010==     in use at exit: 0 bytes in 0 blocks
-==17010==   total heap usage: 10 allocs, 10 frees, 104 bytes allocated
-==17010== 
-==17010== All heap blocks were freed -- no leaks are possible
-==17010== 
-==17010== For lists of detected and suppressed errors, rerun with: -s
-==17010== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17743== 
+==17743== HEAP SUMMARY:
+==17743==     in use at exit: 0 bytes in 0 blocks
+==17743==   total heap usage: 10 allocs, 10 frees, 104 bytes allocated
+==17743== 
+==17743== All heap blocks were freed -- no leaks are possible
+==17743== 
+==17743== For lists of detected and suppressed errors, rerun with: -s
+==17743== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Pruebas de borrado (siempre borra la raíz)
 ===========================================[37;1m
@@ -142,15 +142,15 @@ Pruebas de borrado (siempre borra la raíz)
 [32;1m✓ [37;1mLa cantidad de elementos es 7
 [32;1m✓ [37;1mPude eliminar todos los elementos restantes del abb siempre borrando la raíz.
 [32;1m✓ [37;1mEl abb queda vacío.
-==17011== 
-==17011== HEAP SUMMARY:
-==17011==     in use at exit: 0 bytes in 0 blocks
-==17011==   total heap usage: 18 allocs, 18 frees, 160 bytes allocated
-==17011== 
-==17011== All heap blocks were freed -- no leaks are possible
-==17011== 
-==17011== For lists of detected and suppressed errors, rerun with: -s
-==17011== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17744== 
+==17744== HEAP SUMMARY:
+==17744==     in use at exit: 0 bytes in 0 blocks
+==17744==   total heap usage: 18 allocs, 18 frees, 160 bytes allocated
+==17744== 
+==17744== All heap blocks were freed -- no leaks are possible
+==17744== 
+==17744== For lists of detected and suppressed errors, rerun with: -s
+==17744== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Pruebas de insertar/eliminar/buscar
 ===================================[37;1m
@@ -180,29 +180,29 @@ Pruebas de insertar/eliminar/buscar
 [32;1m✓ [37;1mBusco un elemento y lo encuentro
 [32;1m✓ [37;1mBusco un elemento y lo encuentro
 [32;1m✓ [37;1mBusco un elemento y lo encuentro
-==17012== 
-==17012== HEAP SUMMARY:
-==17012==     in use at exit: 0 bytes in 0 blocks
-==17012==   total heap usage: 32 allocs, 32 frees, 336 bytes allocated
-==17012== 
-==17012== All heap blocks were freed -- no leaks are possible
-==17012== 
-==17012== For lists of detected and suppressed errors, rerun with: -s
-==17012== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17745== 
+==17745== HEAP SUMMARY:
+==17745==     in use at exit: 0 bytes in 0 blocks
+==17745==   total heap usage: 32 allocs, 32 frees, 336 bytes allocated
+==17745== 
+==17745== All heap blocks were freed -- no leaks are possible
+==17745== 
+==17745== For lists of detected and suppressed errors, rerun with: -s
+==17745== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Pruebas de destructor
 =====================[37;1m
 [32;1m✓ [37;1mLuego de llamar a abb_destruir_todo, se invoca el destructor la cantidad de veces correcta.
 [32;1m✓ [37;1mEl destructor fue invocado sobre los elementos correctos
-==17013== 
-==17013== HEAP SUMMARY:
-==17013==     in use at exit: 0 bytes in 0 blocks
-==17013==   total heap usage: 15 allocs, 15 frees, 164 bytes allocated
-==17013== 
-==17013== All heap blocks were freed -- no leaks are possible
-==17013== 
-==17013== For lists of detected and suppressed errors, rerun with: -s
-==17013== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17746== 
+==17746== HEAP SUMMARY:
+==17746==     in use at exit: 0 bytes in 0 blocks
+==17746==   total heap usage: 15 allocs, 15 frees, 164 bytes allocated
+==17746== 
+==17746== All heap blocks were freed -- no leaks are possible
+==17746== 
+==17746== For lists of detected and suppressed errors, rerun with: -s
+==17746== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Pruebas de recorridos e iterador interno
 ========================================[37;1m
@@ -219,82 +219,76 @@ Recorrido inorden
 Recorrido preorden
 ==================[37;1m
 [32;1m✓ [37;1mLa función de recorrido devuelve la cantidad de elementos esperados
-[31;1m✗ [37;1mLos elementos en el vector tienen el orden esperado.
-[31;1m✗ [37;1mPido recorrer menos elementos de los existentes para hacer el recorrido.
-[31;1m✗ [37;1mLos elementos en el vector tienen el orden y cantidad esperado.
+[32;1m✓ [37;1mLos elementos en el vector tienen el orden esperado.
+[32;1m✓ [37;1mPido recorrer menos elementos de los existentes para hacer el recorrido.
+[32;1m✓ [37;1mLos elementos en el vector tienen el orden y cantidad esperado.
 [32;1m✓ [37;1mPido recorrer mas elementos de los existentes para hacer el recorrido.
-[31;1m✗ [37;1mLos elementos en el vector tienen el orden y cantidad esperado.
+[32;1m✓ [37;1mLos elementos en el vector tienen el orden y cantidad esperado.
 [33;1m
 Recorrido postorden
 ===================[37;1m
 [32;1m✓ [37;1mLa función de recorrido devuelve la cantidad de elementos esperados
-[31;1m✗ [37;1mLos elementos en el vector tienen el orden esperado.
-[32;1m✓ [37;1mPido recorrer menos elementos de los existentes para hacer el recorrido.
+[32;1m✓ [37;1mLos elementos en el vector tienen el orden esperado.
+[31;1m✗ [37;1mPido recorrer menos elementos de los existentes para hacer el recorrido.
 [31;1m✗ [37;1mLos elementos en el vector tienen el orden y cantidad esperado.
 [32;1m✓ [37;1mPido recorrer mas elementos de los existentes para hacer el recorrido.
-[31;1m✗ [37;1mLos elementos en el vector tienen el orden y cantidad esperado.
+[32;1m✓ [37;1mLos elementos en el vector tienen el orden y cantidad esperado.
 [33;1m
 Iterador interno inorden
 ========================[37;1m
 [32;1m✓ [37;1mEl iterador interno devuelve la cantidad de elementos que se esperaba iterar.
 [32;1m✓ [37;1mSe invocó la función la cantidad de veces esperada.
 [32;1m✓ [37;1mSe recorrieron las claves en el orden esperado.
-[31;1m✗ [37;1mCuando la función devuelve false, deja de iterar y devuelve la cantidad correcta.
+[32;1m✓ [37;1mCuando la función devuelve false, deja de iterar y devuelve la cantidad correcta.
 [32;1m✓ [37;1mSe invocó la función de iteracion la cantidad de veces esperada.
 [33;1m
 Iterador interno preorden
 =========================[37;1m
 [32;1m✓ [37;1mEl iterador interno devuelve la cantidad de elementos que se esperaba iterar.
 [32;1m✓ [37;1mSe invocó la función la cantidad de veces esperada.
-[31;1m✗ [37;1mSe recorrieron las claves en el orden esperado.
-[31;1m✗ [37;1mCuando la función devuelve false, deja de iterar y devuelve la cantidad correcta.
+[32;1m✓ [37;1mSe recorrieron las claves en el orden esperado.
+[32;1m✓ [37;1mCuando la función devuelve false, deja de iterar y devuelve la cantidad correcta.
 [32;1m✓ [37;1mSe invocó la función de iteracion la cantidad de veces esperada.
 [33;1m
 Iterador interno postorden
 ==========================[37;1m
 [32;1m✓ [37;1mEl iterador interno devuelve la cantidad de elementos que se esperaba iterar.
 [32;1m✓ [37;1mSe invocó la función la cantidad de veces esperada.
-[31;1m✗ [37;1mSe recorrieron las claves en el orden esperado.
-[31;1m✗ [37;1mCuando la función devuelve false, deja de iterar y devuelve la cantidad correcta.
+[32;1m✓ [37;1mSe recorrieron las claves en el orden esperado.
+[32;1m✓ [37;1mCuando la función devuelve false, deja de iterar y devuelve la cantidad correcta.
 [32;1m✓ [37;1mSe invocó la función de iteracion la cantidad de veces esperada.
-==17014== 
-==17014== HEAP SUMMARY:
-==17014==     in use at exit: 0 bytes in 0 blocks
-==17014==   total heap usage: 13 allocs, 13 frees, 156 bytes allocated
-==17014== 
-==17014== All heap blocks were freed -- no leaks are possible
-==17014== 
-==17014== For lists of detected and suppressed errors, rerun with: -s
-==17014== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17748== 
+==17748== HEAP SUMMARY:
+==17748==     in use at exit: 0 bytes in 0 blocks
+==17748==   total heap usage: 13 allocs, 13 frees, 156 bytes allocated
+==17748== 
+==17748== All heap blocks were freed -- no leaks are possible
+==17748== 
+==17748== For lists of detected and suppressed errors, rerun with: -s
+==17748== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Pruebas con NULL
 ================[37;1m
-==17015== Invalid read of size 4
-==17015==    at 0x10DA6: abb_destruir_todo (abb.c:169)
-==17015==    by 0x10DA6: abb_destruir (abb.c:152)
-==17015==    by 0x143CB: probar_null_abb (pruebas_chanutron.c:568)
-==17015==    by 0x10A21: main (pruebas_chanutron.c:671)
-==17015==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
-==17015== 
 [32;1m✓ [37;1mNo puedo insertar nada en un abb nulo.
 [32;1m✓ [37;1mNo puedo buscar nada en un abb nulo.
 [32;1m✓ [37;1mNo puedo borrar nada de en un abb nulo.
 [32;1m✓ [37;1mUn abb nulo es vacío.
 [32;1m✓ [37;1mLa cantidad de elementos de un abb NULL es 0
 [32;1m✓ [37;1mNo puedo iterar un abb nulo.
-[31;1m
-
-FINALIZACION ANORMAL DE LAS PRUEBAS
-
-[37;1m==17015== 
-==17015== HEAP SUMMARY:
-==17015==     in use at exit: 0 bytes in 0 blocks
-==17015==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==17015== 
-==17015== All heap blocks were freed -- no leaks are possible
-==17015== 
-==17015== For lists of detected and suppressed errors, rerun with: -s
-==17015== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+[32;1m✓ [37;1mNo puedo iterar con una funcion nula.
+[32;1m✓ [37;1mPuedo iterar con puntero extra nulo.
+[32;1m✓ [37;1mPuedo insertar elementos null sin problemas
+[32;1m✓ [37;1mPuedo insertar elementos null sin problemas
+[32;1m✓ [37;1mPuedo insertar elementos null sin problemas
+==17749== 
+==17749== HEAP SUMMARY:
+==17749==     in use at exit: 0 bytes in 0 blocks
+==17749==   total heap usage: 15 allocs, 15 frees, 180 bytes allocated
+==17749== 
+==17749== All heap blocks were freed -- no leaks are possible
+==17749== 
+==17749== For lists of detected and suppressed errors, rerun with: -s
+==17749== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 ------------ MÁS PRUEBAS DEL TDA ABB ------------
 ==================================================[37;1m
@@ -304,28 +298,17 @@ PRUEBAS DE CREACIÓN Y DESTRUCCIÓN
 [33;1m
 Destrucción de abbs NULL
 =========================[37;1m
-==17017== Invalid read of size 4
-==17017==    at 0x10DA6: abb_destruir_todo (abb.c:169)
-==17017==    by 0x10DA6: abb_destruir (abb.c:152)
-==17017==    by 0x14DFF: pruebas_creacion_y_destruccion (pruebas_abb.c:85)
-==17017==    by 0x1C50B: pruebas_abril (pruebas_abb.c:1133)
-==17017==    by 0x109B3: main (pruebas_chanutron.c:673)
-==17017==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
-==17017== 
 [32;1m✓ [37;1mSe está por probar si es posible destruir un abb nulo.
-[31;1m
-
-FINALIZACION ANORMAL DE LAS PRUEBAS
-
-[37;1m==17017== 
-==17017== HEAP SUMMARY:
-==17017==     in use at exit: 0 bytes in 0 blocks
-==17017==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==17017== 
-==17017== All heap blocks were freed -- no leaks are possible
-==17017== 
-==17017== For lists of detected and suppressed errors, rerun with: -s
-==17017== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+[32;1m✓ [37;1mSe está por probar si es posible destruir un abb nulo con un destructor válido.
+==17751== 
+==17751== HEAP SUMMARY:
+==17751==     in use at exit: 0 bytes in 0 blocks
+==17751==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==17751== 
+==17751== All heap blocks were freed -- no leaks are possible
+==17751== 
+==17751== For lists of detected and suppressed errors, rerun with: -s
+==17751== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Creación de abbs con comparador válido e inválido
 ====================================================[37;1m
@@ -336,24 +319,24 @@ Creación de abbs con comparador válido e inválido
 [32;1m✓ [37;1mSe crea otro abb.
 [32;1m✓ [37;1mSe está por probar si es posible destruir este abb vacío con un destructor nulo.
 [32;1m✓ [37;1mNo es posible crear un abb con un comparador nulo.
-==17018== 
-==17018== HEAP SUMMARY:
-==17018==     in use at exit: 0 bytes in 0 blocks
-==17018==   total heap usage: 2 allocs, 2 frees, 24 bytes allocated
-==17018== 
-==17018== All heap blocks were freed -- no leaks are possible
-==17018== 
-==17018== For lists of detected and suppressed errors, rerun with: -s
-==17018== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==17016== 
-==17016== HEAP SUMMARY:
-==17016==     in use at exit: 0 bytes in 0 blocks
-==17016==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==17016== 
-==17016== All heap blocks were freed -- no leaks are possible
-==17016== 
-==17016== For lists of detected and suppressed errors, rerun with: -s
-==17016== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17752== 
+==17752== HEAP SUMMARY:
+==17752==     in use at exit: 0 bytes in 0 blocks
+==17752==   total heap usage: 2 allocs, 2 frees, 24 bytes allocated
+==17752== 
+==17752== All heap blocks were freed -- no leaks are possible
+==17752== 
+==17752== For lists of detected and suppressed errors, rerun with: -s
+==17752== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17750== 
+==17750== HEAP SUMMARY:
+==17750==     in use at exit: 0 bytes in 0 blocks
+==17750==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==17750== 
+==17750== All heap blocks were freed -- no leaks are possible
+==17750== 
+==17750== For lists of detected and suppressed errors, rerun with: -s
+==17750== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 PRUEBAS DE INSERCIÓN
 =====================[37;1m
@@ -361,15 +344,15 @@ PRUEBAS DE INSERCIÓN
 Inserción en abb nulo
 ======================[37;1m
 [32;1m✓ [37;1mAl intentar insertar en un abb nulo, se devuelve NULL
-==17020== 
-==17020== HEAP SUMMARY:
-==17020==     in use at exit: 0 bytes in 0 blocks
-==17020==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==17020== 
-==17020== All heap blocks were freed -- no leaks are possible
-==17020== 
-==17020== For lists of detected and suppressed errors, rerun with: -s
-==17020== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17754== 
+==17754== HEAP SUMMARY:
+==17754==     in use at exit: 0 bytes in 0 blocks
+==17754==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==17754== 
+==17754== All heap blocks were freed -- no leaks are possible
+==17754== 
+==17754== For lists of detected and suppressed errors, rerun with: -s
+==17754== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Inserciones en abb válido
 ==========================[37;1m
@@ -394,24 +377,24 @@ Inserciones en abb válido
 [32;1m✓ [37;1mEs posible insertar un elemento repetido en el abb
 [32;1m✓ [37;1mEl abb no está vacío
 [32;1m✓ [37;1mEl abb posee tres elemento
-==17021== 
-==17021== HEAP SUMMARY:
-==17021==     in use at exit: 0 bytes in 0 blocks
-==17021==   total heap usage: 516 allocs, 516 frees, 6,184 bytes allocated
-==17021== 
-==17021== All heap blocks were freed -- no leaks are possible
-==17021== 
-==17021== For lists of detected and suppressed errors, rerun with: -s
-==17021== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==17019== 
-==17019== HEAP SUMMARY:
-==17019==     in use at exit: 0 bytes in 0 blocks
-==17019==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==17019== 
-==17019== All heap blocks were freed -- no leaks are possible
-==17019== 
-==17019== For lists of detected and suppressed errors, rerun with: -s
-==17019== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17755== 
+==17755== HEAP SUMMARY:
+==17755==     in use at exit: 0 bytes in 0 blocks
+==17755==   total heap usage: 516 allocs, 516 frees, 6,184 bytes allocated
+==17755== 
+==17755== All heap blocks were freed -- no leaks are possible
+==17755== 
+==17755== For lists of detected and suppressed errors, rerun with: -s
+==17755== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17753== 
+==17753== HEAP SUMMARY:
+==17753==     in use at exit: 0 bytes in 0 blocks
+==17753==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==17753== 
+==17753== All heap blocks were freed -- no leaks are possible
+==17753== 
+==17753== For lists of detected and suppressed errors, rerun with: -s
+==17753== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 PRUEBAS DE BÚSQUEDA
 ====================[37;1m
@@ -419,29 +402,29 @@ PRUEBAS DE BÚSQUEDA
 Búsqueda en abb nulo
 =====================[37;1m
 [32;1m✓ [37;1mBuscar un elemento válido en un abb nulo devuelve NULL.
-==17023== 
-==17023== HEAP SUMMARY:
-==17023==     in use at exit: 0 bytes in 0 blocks
-==17023==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==17023== 
-==17023== All heap blocks were freed -- no leaks are possible
-==17023== 
-==17023== For lists of detected and suppressed errors, rerun with: -s
-==17023== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17757== 
+==17757== HEAP SUMMARY:
+==17757==     in use at exit: 0 bytes in 0 blocks
+==17757==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==17757== 
+==17757== All heap blocks were freed -- no leaks are possible
+==17757== 
+==17757== For lists of detected and suppressed errors, rerun with: -s
+==17757== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Búsqueda de elementos existentes e inexistentes en abb válido
 ===============================================================[37;1m
 [32;1m✓ [37;1mSe encontró el elemento buscado.
 [32;1m✓ [37;1mSe buscó un elemento inexistente en un abb y se devolvió NULL.
-==17024== 
-==17024== HEAP SUMMARY:
-==17024==     in use at exit: 0 bytes in 0 blocks
-==17024==   total heap usage: 3 allocs, 3 frees, 36 bytes allocated
-==17024== 
-==17024== All heap blocks were freed -- no leaks are possible
-==17024== 
-==17024== For lists of detected and suppressed errors, rerun with: -s
-==17024== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17758== 
+==17758== HEAP SUMMARY:
+==17758==     in use at exit: 0 bytes in 0 blocks
+==17758==   total heap usage: 3 allocs, 3 frees, 36 bytes allocated
+==17758== 
+==17758== All heap blocks were freed -- no leaks are possible
+==17758== 
+==17758== For lists of detected and suppressed errors, rerun with: -s
+==17758== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Pruebas mixtas de búsqueda
 ===========================[37;1m
@@ -452,24 +435,24 @@ Pruebas mixtas de búsqueda
 [32;1m✓ [37;1mSe eliminan elementos del abb.
 [32;1m✓ [37;1mSe busca un elemento que continúa en el abb y se lo encuentra
 [32;1m✓ [37;1mSe busca un elemento que ya no se encuentra en el abb y se devuelve NULL.
-==17025== 
-==17025== HEAP SUMMARY:
-==17025==     in use at exit: 0 bytes in 0 blocks
-==17025==   total heap usage: 6 allocs, 6 frees, 64 bytes allocated
-==17025== 
-==17025== All heap blocks were freed -- no leaks are possible
-==17025== 
-==17025== For lists of detected and suppressed errors, rerun with: -s
-==17025== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==17022== 
-==17022== HEAP SUMMARY:
-==17022==     in use at exit: 0 bytes in 0 blocks
-==17022==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==17022== 
-==17022== All heap blocks were freed -- no leaks are possible
-==17022== 
-==17022== For lists of detected and suppressed errors, rerun with: -s
-==17022== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17759== 
+==17759== HEAP SUMMARY:
+==17759==     in use at exit: 0 bytes in 0 blocks
+==17759==   total heap usage: 6 allocs, 6 frees, 64 bytes allocated
+==17759== 
+==17759== All heap blocks were freed -- no leaks are possible
+==17759== 
+==17759== For lists of detected and suppressed errors, rerun with: -s
+==17759== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17756== 
+==17756== HEAP SUMMARY:
+==17756==     in use at exit: 0 bytes in 0 blocks
+==17756==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==17756== 
+==17756== All heap blocks were freed -- no leaks are possible
+==17756== 
+==17756== For lists of detected and suppressed errors, rerun with: -s
+==17756== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 PRUEBAS DE ELIMINACIÓN
 =======================[37;1m
@@ -477,34 +460,18 @@ PRUEBAS DE ELIMINACIÓN
 Eliminación en abb nulo
 ========================[37;1m
 [32;1m✓ [37;1mNo se puede eliminar de un abb nulo
-==17027== 
-==17027== HEAP SUMMARY:
-==17027==     in use at exit: 0 bytes in 0 blocks
-==17027==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==17027== 
-==17027== All heap blocks were freed -- no leaks are possible
-==17027== 
-==17027== For lists of detected and suppressed errors, rerun with: -s
-==17027== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17761== 
+==17761== HEAP SUMMARY:
+==17761==     in use at exit: 0 bytes in 0 blocks
+==17761==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==17761== 
+==17761== All heap blocks were freed -- no leaks are possible
+==17761== 
+==17761== For lists of detected and suppressed errors, rerun with: -s
+==17761== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Eliminación de elementos existentes e inexistentes en abb válido
 ==================================================================[37;1m
-==17028== Conditional jump or move depends on uninitialised value(s)
-==17028==    at 0x1608E: eliminar_un_elemento_inexistente_en_el_abb_genera_error (pruebas_abb.c:303)
-==17028==    by 0x17031: pruebas_eliminacion (pruebas_abb.c:488)
-==17028==    by 0x1C4DB: pruebas_abril (pruebas_abb.c:1139)
-==17028==    by 0x109B3: main (pruebas_chanutron.c:673)
-==17028==  Uninitialised value was created by a stack allocation
-==17028==    at 0x10CCC: abb_quitar (abb.c:110)
-==17028== 
-==17028== Conditional jump or move depends on uninitialised value(s)
-==17028==    at 0x1616E: eliminar_un_elemento_inexistente_en_el_abb_genera_error (pruebas_abb.c:310)
-==17028==    by 0x17031: pruebas_eliminacion (pruebas_abb.c:488)
-==17028==    by 0x1C4DB: pruebas_abril (pruebas_abb.c:1139)
-==17028==    by 0x109B3: main (pruebas_chanutron.c:673)
-==17028==  Uninitialised value was created by a stack allocation
-==17028==    at 0x10CCC: abb_quitar (abb.c:110)
-==17028== 
 [32;1m✓ [37;1mSe tiene un abb no vacío
 [32;1m✓ [37;1mEs posible eliminar el unico elemento que tiene el abb
 [32;1m✓ [37;1mEl abb ahora está vacío
@@ -512,20 +479,20 @@ Eliminación de elementos existentes e inexistentes en abb válido
 [32;1m✓ [37;1mEs posible eliminar el unico elemento que tiene el abb
 [31;1m✗ [37;1mEl abb ahora está vacío
 [32;1m✓ [37;1mSe tiene un abb vacío
-[31;1m✗ [37;1mIntentar eliminar un elemento de un abb vacío devuelve NULL
+[32;1m✓ [37;1mIntentar eliminar un elemento de un abb vacío devuelve NULL
 [32;1m✓ [37;1mEl abb continúa vacío
 [32;1m✓ [37;1mSe inserta un elemento en el abb. Ahora ya no está vacío
-[31;1m✗ [37;1mIntentar eliminar un elemento que no se encuentra en el abb devuelve NULL
+[32;1m✓ [37;1mIntentar eliminar un elemento que no se encuentra en el abb devuelve NULL
 [32;1m✓ [37;1mEl abb no borró el elemento que almacenaba
-==17028== 
-==17028== HEAP SUMMARY:
-==17028==     in use at exit: 0 bytes in 0 blocks
-==17028==   total heap usage: 6 allocs, 6 frees, 72 bytes allocated
-==17028== 
-==17028== All heap blocks were freed -- no leaks are possible
-==17028== 
-==17028== For lists of detected and suppressed errors, rerun with: -s
-==17028== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==17762== 
+==17762== HEAP SUMMARY:
+==17762==     in use at exit: 0 bytes in 0 blocks
+==17762==   total heap usage: 6 allocs, 6 frees, 72 bytes allocated
+==17762== 
+==17762== All heap blocks were freed -- no leaks are possible
+==17762== 
+==17762== For lists of detected and suppressed errors, rerun with: -s
+==17762== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Eliminación de varios elementos de abbs grandes
 ================================================[37;1m
@@ -563,24 +530,24 @@ Eliminación de varios elementos de abbs grandes
 [32;1m✓ [37;1mEs posible quitar un elemento que no tiene hijos
 [32;1m✓ [37;1mBusco el elemento que acabo de borrar del abb y no lo encuentro
 [32;1m✓ [37;1mEl tamaño del abb ahora es 5
-==17029== 
-==17029== HEAP SUMMARY:
-==17029==     in use at exit: 0 bytes in 0 blocks
-==17029==   total heap usage: 22 allocs, 22 frees, 224 bytes allocated
-==17029== 
-==17029== All heap blocks were freed -- no leaks are possible
-==17029== 
-==17029== For lists of detected and suppressed errors, rerun with: -s
-==17029== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==17026== 
-==17026== HEAP SUMMARY:
-==17026==     in use at exit: 0 bytes in 0 blocks
-==17026==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==17026== 
-==17026== All heap blocks were freed -- no leaks are possible
-==17026== 
-==17026== For lists of detected and suppressed errors, rerun with: -s
-==17026== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17763== 
+==17763== HEAP SUMMARY:
+==17763==     in use at exit: 0 bytes in 0 blocks
+==17763==   total heap usage: 22 allocs, 22 frees, 224 bytes allocated
+==17763== 
+==17763== All heap blocks were freed -- no leaks are possible
+==17763== 
+==17763== For lists of detected and suppressed errors, rerun with: -s
+==17763== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17760== 
+==17760== HEAP SUMMARY:
+==17760==     in use at exit: 0 bytes in 0 blocks
+==17760==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==17760== 
+==17760== All heap blocks were freed -- no leaks are possible
+==17760== 
+==17760== For lists of detected and suppressed errors, rerun with: -s
+==17760== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 PRUEBAS DEL ITERADOR
 ====================[37;1m
@@ -590,30 +557,30 @@ Iterar un abb nulo
 [32;1m✓ [37;1mIterar un abb NULL de manera INORDEN devuelve 0
 [32;1m✓ [37;1mIterar un abb NULL de manera PREORDEN devuelve 0
 [32;1m✓ [37;1mIterar un abb NULL de manera POSTORDEN devuelve 0
-==17031== 
-==17031== HEAP SUMMARY:
-==17031==     in use at exit: 0 bytes in 0 blocks
-==17031==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==17031== 
-==17031== All heap blocks were freed -- no leaks are possible
-==17031== 
-==17031== For lists of detected and suppressed errors, rerun with: -s
-==17031== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17765== 
+==17765== HEAP SUMMARY:
+==17765==     in use at exit: 0 bytes in 0 blocks
+==17765==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==17765== 
+==17765== All heap blocks were freed -- no leaks are possible
+==17765== 
+==17765== For lists of detected and suppressed errors, rerun with: -s
+==17765== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Iterar con una función nula
 ============================[37;1m
 [32;1m✓ [37;1mIterar de manera INORDEN un abb válido con una función NULL devuelve 0
 [32;1m✓ [37;1mIterar de manera PREORDEN un abb válido con una función NULL devuelve 0
 [32;1m✓ [37;1mIterar de manera POSTORDEN un abb válido con una función NULL devuelve 0
-==17032== 
-==17032== HEAP SUMMARY:
-==17032==     in use at exit: 0 bytes in 0 blocks
-==17032==   total heap usage: 1 allocs, 1 frees, 12 bytes allocated
-==17032== 
-==17032== All heap blocks were freed -- no leaks are possible
-==17032== 
-==17032== For lists of detected and suppressed errors, rerun with: -s
-==17032== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17766== 
+==17766== HEAP SUMMARY:
+==17766==     in use at exit: 0 bytes in 0 blocks
+==17766==   total heap usage: 1 allocs, 1 frees, 12 bytes allocated
+==17766== 
+==17766== All heap blocks were freed -- no leaks are possible
+==17766== 
+==17766== For lists of detected and suppressed errors, rerun with: -s
+==17766== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Iterar un abb válido
 =====================[37;1m
@@ -625,27 +592,27 @@ Iterar un abb válido
 [32;1m✓ [37;1mSe itera el abb de manera INORDEN en su totalidad con un aux nulo y se devuelve la cantidad correcta de elementos
 [32;1m✓ [37;1mSe itera el abb de manera PREORDEN en su totalidad con un aux nulo y se devuelve la cantidad correcta de elementos
 [32;1m✓ [37;1mSe itera el abb de manera POSTORDEN en su totalidad con un aux nulo y se devuelve la cantidad correcta de elementos
-[31;1m✗ [37;1mSe itera un abb de manera INORDEN parcialmente y se devuelve la cantidad correcta.
-[31;1m✗ [37;1mSe itera un abb de manera PREORDEN parcialmente y se devuelve la cantidad correcta.
-[31;1m✗ [37;1mSe itera un abb de manera POSTORDEN parcialmente y se devuelve la cantidad correcta.
-==17033== 
-==17033== HEAP SUMMARY:
-==17033==     in use at exit: 0 bytes in 0 blocks
-==17033==   total heap usage: 13 allocs, 13 frees, 156 bytes allocated
-==17033== 
-==17033== All heap blocks were freed -- no leaks are possible
-==17033== 
-==17033== For lists of detected and suppressed errors, rerun with: -s
-==17033== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==17030== 
-==17030== HEAP SUMMARY:
-==17030==     in use at exit: 0 bytes in 0 blocks
-==17030==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==17030== 
-==17030== All heap blocks were freed -- no leaks are possible
-==17030== 
-==17030== For lists of detected and suppressed errors, rerun with: -s
-==17030== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+[32;1m✓ [37;1mSe itera un abb de manera INORDEN parcialmente y se devuelve la cantidad correcta.
+[32;1m✓ [37;1mSe itera un abb de manera PREORDEN parcialmente y se devuelve la cantidad correcta.
+[32;1m✓ [37;1mSe itera un abb de manera POSTORDEN parcialmente y se devuelve la cantidad correcta.
+==17767== 
+==17767== HEAP SUMMARY:
+==17767==     in use at exit: 0 bytes in 0 blocks
+==17767==   total heap usage: 13 allocs, 13 frees, 156 bytes allocated
+==17767== 
+==17767== All heap blocks were freed -- no leaks are possible
+==17767== 
+==17767== For lists of detected and suppressed errors, rerun with: -s
+==17767== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17764== 
+==17764== HEAP SUMMARY:
+==17764==     in use at exit: 0 bytes in 0 blocks
+==17764==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==17764== 
+==17764== All heap blocks were freed -- no leaks are possible
+==17764== 
+==17764== For lists of detected and suppressed errors, rerun with: -s
+==17764== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 PRUEBAS DE RECORRIDOS CON ARRAY
 ===============================[37;1m
@@ -655,30 +622,30 @@ Recorrer un abb nulo
 [32;1m✓ [37;1mSi se intenta recorrer de manera INORDEN un abb NULL, se devuelve el valor 0
 [32;1m✓ [37;1mSi se intenta recorrer de manera PREORDEN un abb NULL, se devuelve el valor 0
 [32;1m✓ [37;1mSi se intenta recorrer de manera POSTORDEN un abb NULL, se devuelve el valor 0
-==17035== 
-==17035== HEAP SUMMARY:
-==17035==     in use at exit: 0 bytes in 0 blocks
-==17035==   total heap usage: 1 allocs, 1 frees, 16 bytes allocated
-==17035== 
-==17035== All heap blocks were freed -- no leaks are possible
-==17035== 
-==17035== For lists of detected and suppressed errors, rerun with: -s
-==17035== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17769== 
+==17769== HEAP SUMMARY:
+==17769==     in use at exit: 0 bytes in 0 blocks
+==17769==   total heap usage: 1 allocs, 1 frees, 16 bytes allocated
+==17769== 
+==17769== All heap blocks were freed -- no leaks are possible
+==17769== 
+==17769== For lists of detected and suppressed errors, rerun with: -s
+==17769== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Recorrer con un array nulo y con tamanio cero
 =============================================[37;1m
 [32;1m✓ [37;1mSi se intenta recorrer de manera INORDEN un abb válido con un array nulo, se devuelve 0
 [32;1m✓ [37;1mSi se intenta recorrer de manera PREORDEN un abb válido con un array nulo, se devuelve 0
 [32;1m✓ [37;1mSi se intenta recorrer de manera POSTORDEN un abb válido con un array nulo, se devuelve 0
-==17036== 
-==17036== HEAP SUMMARY:
-==17036==     in use at exit: 0 bytes in 0 blocks
-==17036==   total heap usage: 1 allocs, 1 frees, 12 bytes allocated
-==17036== 
-==17036== All heap blocks were freed -- no leaks are possible
-==17036== 
-==17036== For lists of detected and suppressed errors, rerun with: -s
-==17036== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17771== 
+==17771== HEAP SUMMARY:
+==17771==     in use at exit: 0 bytes in 0 blocks
+==17771==   total heap usage: 1 allocs, 1 frees, 12 bytes allocated
+==17771== 
+==17771== All heap blocks were freed -- no leaks are possible
+==17771== 
+==17771== For lists of detected and suppressed errors, rerun with: -s
+==17771== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Recorrer un abb válido
 =======================[37;1m
@@ -690,37 +657,37 @@ Recorrer un abb válido
 [32;1m✓ [37;1mEl segundo elemento en el array es el correcto
 [32;1m✓ [37;1mEl tercer elemento en el array es el correcto
 [32;1m✓ [37;1mSe recorre un abb de manera PREORDEN con menos elementos que posiciones en el array, y se devuelve la cantidad correcta de elementos.
-[31;1m✗ [37;1mEl primer elemento en el array es el correcto
-[31;1m✗ [37;1mEl segundo elemento en el array es el correcto
-[31;1m✗ [37;1mEl tercer elemento en el array es el correcto
+[32;1m✓ [37;1mEl primer elemento en el array es el correcto
+[32;1m✓ [37;1mEl segundo elemento en el array es el correcto
+[32;1m✓ [37;1mEl tercer elemento en el array es el correcto
 [32;1m✓ [37;1mSe recorre un abb de manera POSTORDEN con menos elementos que posiciones en el array, y se devuelve la cantidad correcta de elementos.
-[31;1m✗ [37;1mEl primer elemento en el array es el correcto
-[31;1m✗ [37;1mEl segundo elemento en el array es el correcto
-[31;1m✗ [37;1mEl tercer elemento en el array es el correcto
+[32;1m✓ [37;1mEl primer elemento en el array es el correcto
+[32;1m✓ [37;1mEl segundo elemento en el array es el correcto
+[32;1m✓ [37;1mEl tercer elemento en el array es el correcto
 [32;1m✓ [37;1mSe recorre un abb de manera INORDEN con más elementos que posiciones en el array, y se devuelve el tope del array.
 [32;1m✓ [37;1mEl primer elemento en el array es el correcto
 [32;1m✓ [37;1mEl segundo elemento en el array es el correcto
 [32;1m✓ [37;1mEl tercer elemento en el array es el correcto
 [32;1m✓ [37;1mEl cuarto elemento en el array es el correcto
-[31;1m✗ [37;1mSe recorre un abb de manera PREORDEN con más elementos que posiciones en el array, y se devuelve el tope del array.
-[31;1m✗ [37;1mEl primer elemento en el array es el correcto
+[32;1m✓ [37;1mSe recorre un abb de manera PREORDEN con más elementos que posiciones en el array, y se devuelve el tope del array.
+[32;1m✓ [37;1mEl primer elemento en el array es el correcto
 [32;1m✓ [37;1mEl segundo elemento en el array es el correcto
-[31;1m✗ [37;1mEl tercer elemento en el array es el correcto
-[31;1m✗ [37;1mEl cuarto elemento en el array es el correcto
-[32;1m✓ [37;1mSe recorre un abb de manera POSTORDEN con más elementos que posiciones en el array, y se devuelve el tope del array.
-[31;1m✗ [37;1mEl primer elemento en el array es el correcto
+[32;1m✓ [37;1mEl tercer elemento en el array es el correcto
+[32;1m✓ [37;1mEl cuarto elemento en el array es el correcto
+[31;1m✗ [37;1mSe recorre un abb de manera POSTORDEN con más elementos que posiciones en el array, y se devuelve el tope del array.
+[32;1m✓ [37;1mEl primer elemento en el array es el correcto
 [32;1m✓ [37;1mEl segundo elemento en el array es el correcto
-[31;1m✗ [37;1mEl tercer elemento en el array es el correcto
-[31;1m✗ [37;1mEl cuarto elemento en el array es el correcto
-==17037== 
-==17037== HEAP SUMMARY:
-==17037==     in use at exit: 0 bytes in 0 blocks
-==17037==   total heap usage: 15 allocs, 15 frees, 196 bytes allocated
-==17037== 
-==17037== All heap blocks were freed -- no leaks are possible
-==17037== 
-==17037== For lists of detected and suppressed errors, rerun with: -s
-==17037== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+[32;1m✓ [37;1mEl tercer elemento en el array es el correcto
+[32;1m✓ [37;1mEl cuarto elemento en el array es el correcto
+==17772== 
+==17772== HEAP SUMMARY:
+==17772==     in use at exit: 0 bytes in 0 blocks
+==17772==   total heap usage: 15 allocs, 15 frees, 196 bytes allocated
+==17772== 
+==17772== All heap blocks were freed -- no leaks are possible
+==17772== 
+==17772== For lists of detected and suppressed errors, rerun with: -s
+==17772== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [33;1m
 Recorrer un abb válido, modificarlo y volver a recorrerlo
 ==========================================================[37;1m
@@ -903,35 +870,35 @@ Recorrer un abb válido, modificarlo y volver a recorrerlo
 [32;1m✓ [37;1mEl 3º elemento almacenado es el correcto
 [32;1m✓ [37;1mEl 4º elemento almacenado es el correcto
 [32;1m✓ [37;1mEl 5º elemento almacenado es el correcto
-==17038== 
-==17038== HEAP SUMMARY:
-==17038==     in use at exit: 0 bytes in 0 blocks
-==17038==   total heap usage: 34 allocs, 34 frees, 540 bytes allocated
-==17038== 
-==17038== All heap blocks were freed -- no leaks are possible
-==17038== 
-==17038== For lists of detected and suppressed errors, rerun with: -s
-==17038== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==17034== 
-==17034== HEAP SUMMARY:
-==17034==     in use at exit: 0 bytes in 0 blocks
-==17034==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==17034== 
-==17034== All heap blocks were freed -- no leaks are possible
-==17034== 
-==17034== For lists of detected and suppressed errors, rerun with: -s
-==17034== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17773== 
+==17773== HEAP SUMMARY:
+==17773==     in use at exit: 0 bytes in 0 blocks
+==17773==   total heap usage: 34 allocs, 34 frees, 540 bytes allocated
+==17773== 
+==17773== All heap blocks were freed -- no leaks are possible
+==17773== 
+==17773== For lists of detected and suppressed errors, rerun with: -s
+==17773== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==17768== 
+==17768== HEAP SUMMARY:
+==17768==     in use at exit: 0 bytes in 0 blocks
+==17768==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==17768== 
+==17768== All heap blocks were freed -- no leaks are possible
+==17768== 
+==17768== For lists of detected and suppressed errors, rerun with: -s
+==17768== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 [37;1m
 ---------------------------------
-455 pruebas corridas, 31 errores - D:
-[0m==17006== 
-==17006== HEAP SUMMARY:
-==17006==     in use at exit: 0 bytes in 0 blocks
-==17006==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==17006== 
-==17006== All heap blocks were freed -- no leaks are possible
-==17006== 
-==17006== For lists of detected and suppressed errors, rerun with: -s
-==17006== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+461 pruebas corridas, 4 errores - D:
+[0m==17739== 
+==17739== HEAP SUMMARY:
+==17739==     in use at exit: 0 bytes in 0 blocks
+==17739==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==17739== 
+==17739== All heap blocks were freed -- no leaks are possible
+==17739== 
+==17739== For lists of detected and suppressed errors, rerun with: -s
+==17739== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 makefile-chanutron:8: recipe for target 'valgrind' failed
 make: *** [valgrind] Error 2

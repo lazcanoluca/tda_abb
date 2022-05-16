@@ -53,7 +53,7 @@ nodo_abb_t *nodo_max(nodo_abb_t *raiz)
 
 nodo_abb_t *nodo_abb_quitar(nodo_abb_t *raiz, void *elemento, abb_comparador comparador, size_t *tamanio, void **quitado)
 {
-	if (!raiz || !elemento) return NULL;
+	if (!raiz /*|| !elemento*/) return NULL;
 
 	int comparacion = comparador(elemento, raiz->elemento);
 
@@ -108,9 +108,9 @@ nodo_abb_t *nodo_abb_quitar(nodo_abb_t *raiz, void *elemento, abb_comparador com
 
 void *abb_quitar(abb_t *arbol, void *elemento)
 {
-	if (!arbol || !elemento) return NULL;
+	if (!arbol /*|| !elemento*/ || abb_vacio(arbol)) return NULL;
 
-	void *quitado;
+	void *quitado = NULL;
 
 	arbol->nodo_raiz = nodo_abb_quitar(arbol->nodo_raiz, elemento, arbol->comparador, &arbol->tamanio, &quitado);
 
@@ -179,8 +179,8 @@ bool inorden_para_cada(nodo_abb_t *raiz, bool (*funcion)(void *, void *), void *
 		if (!inorden_para_cada(raiz->izquierda, funcion, aux, funcion_invocaciones)) return false;
 	}
 
-	if (!funcion(raiz->elemento, aux)) return false;
 	(*funcion_invocaciones)++;
+	if (!funcion(raiz->elemento, aux)) return false;
 
 	if (raiz->derecha){
 		if (!inorden_para_cada(raiz->derecha, funcion, aux, funcion_invocaciones)) return false;
@@ -201,9 +201,9 @@ bool postorden_para_cada(nodo_abb_t *raiz, bool (*funcion)(void *, void *), void
 		if (!postorden_para_cada(raiz->derecha, funcion, aux, funcion_invocaciones)) return false;
 	}
 
-	if (!funcion(raiz->elemento, aux)) return false;
 	(*funcion_invocaciones)++;
-	
+	if (!funcion(raiz->elemento, aux)) return false;
+
 	return true;
 }
 
@@ -211,8 +211,8 @@ bool preorden_para_cada(nodo_abb_t *raiz, bool (*funcion)(void *, void *), void 
 {
 	if (!raiz) return true;
 
-	if (!funcion(raiz->elemento, aux)) return false;
 	(*funcion_invocaciones)++;
+	if (!funcion(raiz->elemento, aux)) return false;
 
 	if (raiz->izquierda) {
 		if (!preorden_para_cada(raiz->izquierda, funcion, aux, funcion_invocaciones)) return false;
@@ -281,9 +281,15 @@ void postorden(nodo_abb_t *raiz, void **array, size_t tamanio_array, size_t *ele
 {
 	if (!raiz || *elementos_recorridos == tamanio_array) return;
 
-	if (raiz->izquierda) postorden(raiz->izquierda, array, tamanio_array, elementos_recorridos);
+	if (raiz->izquierda) {
+		postorden(raiz->izquierda, array, tamanio_array, elementos_recorridos);
+		if ((*elementos_recorridos) == tamanio_array) return;
+	}
 
-	if (raiz->derecha) postorden(raiz->derecha, array, tamanio_array, elementos_recorridos);
+	if (raiz->derecha) {
+		postorden(raiz->derecha, array, tamanio_array, elementos_recorridos);
+		if ((*elementos_recorridos) == tamanio_array) return;
+	}
 
 	array[*elementos_recorridos] = raiz->elemento;
 	(*elementos_recorridos)++;

@@ -64,11 +64,35 @@ void quitar_elementos()
 
 	pa2m_afirmar(*(int *)abb_quitar(arbol_prueba, &b) == 10, "El elemento quitado es 10.");
 	pa2m_afirmar(*(int *)arbol_prueba->nodo_raiz->izquierda->izquierda->elemento == 7, "El elemento de la izquierda izquierda es 7.");
+	pa2m_afirmar(abb_tamanio(arbol_prueba) == 8, "El árbol tiene 8 elementos.");
+
 	pa2m_afirmar(*(int *)abb_quitar(arbol_prueba, &f) == 17, "El elemento quitado es 17.");
 	pa2m_afirmar(arbol_prueba->nodo_raiz->derecha->izquierda->izquierda == NULL, "El elemento de la derecha izquierda no tiene izquierda.");
+	pa2m_afirmar(abb_tamanio(arbol_prueba) == 7, "El árbol tiene 7 elementos.");
+
 	pa2m_afirmar(*(int *)abb_quitar(arbol_prueba, &h) == 23, "El elemento quitado es 23.");
 	pa2m_afirmar(*(int *)arbol_prueba->nodo_raiz->derecha->elemento == 19, "El elemento de la derecha es 19.");
+	pa2m_afirmar(abb_tamanio(arbol_prueba) == 6, "El árbol tiene 6 elementos.");
 
+	pa2m_afirmar(*(int *)abb_quitar(arbol_prueba, &g) == 19, "El elemento quitado es 19.");
+	pa2m_afirmar(abb_tamanio(arbol_prueba) == 5, "El árbol tiene 5 elementos.");
+
+	pa2m_afirmar(*(int *)abb_quitar(arbol_prueba, &i) == 29, "El elemento quitado es 29.");
+	pa2m_afirmar(abb_tamanio(arbol_prueba) == 4, "El árbol tiene 4 elementos.");
+
+	pa2m_afirmar(*(int *)abb_quitar(arbol_prueba, &c) == 13, "El elemento quitado es 13.");
+	pa2m_afirmar(abb_tamanio(arbol_prueba) == 3, "El árbol tiene 3 elementos.");
+
+	pa2m_afirmar(*(int *)abb_quitar(arbol_prueba, &d) == 14, "El elemento quitado es 14.");
+	pa2m_afirmar(abb_tamanio(arbol_prueba) == 2, "El árbol tiene 2 elementos.");
+
+	pa2m_afirmar(*(int *)abb_quitar(arbol_prueba, &e) == 15, "El elemento quitado es 15.");
+	pa2m_afirmar(abb_tamanio(arbol_prueba) == 1, "El árbol tiene 1 elementos.");
+
+	pa2m_afirmar(*(int *)abb_quitar(arbol_prueba, &a) == 7, "El elemento quitado es 7.");
+	pa2m_afirmar(abb_tamanio(arbol_prueba) == 0, "El árbol tiene 0 elementos.");
+	pa2m_afirmar(abb_vacio(arbol_prueba), "El árbol está vacío.");
+	
 	abb_destruir(arbol_prueba);
 }
 
@@ -116,8 +140,8 @@ void probar_recorridos()
 	pa2m_afirmar(abb_recorrer(arbol_prueba, POSTORDEN, elementos_postorden, MAX_ARRAY) == 9, "Se recorrieron 9 elementos postorden.");
 	
 	int esperado_inorden[] = {7, 10, 13, 14, 15, 17, 19, 23, 29};
-	int esperado_preorden[] = {7, 10, 14, 13, 17, 19, 29, 23, 15};
-	int esperado_postorden[] = {15, 13, 10, 7, 14, 23, 19, 17, 29};
+	int esperado_preorden[] = {15, 13, 10, 7, 14, 23, 19, 17, 29};
+	int esperado_postorden[] = {7, 10, 14, 13, 17, 19, 29, 23, 15};
 
 
 	bool flag_inorden = true;

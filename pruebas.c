@@ -99,7 +99,7 @@ void quitar_elementos()
 void buscar_elementos()
 {
 	abb_t *arbol_prueba = abb_crear(comparador);
-	int a = 7, b = 10, c = 13, d = 14, e = 15, f = 17, g = 19, h = 23, i = 29;
+	int a = 7, b = 10, c = 13, d = 14, e = 15, f = 17, g = 19, h = 23, i = 29, j = 99;
 	abb_insertar(arbol_prueba, &e);
 	abb_insertar(arbol_prueba, &c);
 	abb_insertar(arbol_prueba, &h);
@@ -112,6 +112,7 @@ void buscar_elementos()
 
 	pa2m_afirmar(*(int *)abb_buscar(arbol_prueba, &g) == 19, "El elemento encontrado es 19.");
 	pa2m_afirmar(*(int *)abb_buscar(arbol_prueba, &c) == 13, "El elemento encontrado es 13.");
+	pa2m_afirmar(abb_buscar(arbol_prueba, &j) == NULL, "El elemento no fue encontrado");
 
 	abb_destruir(arbol_prueba);
 }
@@ -203,7 +204,6 @@ int main()
 
 	pa2m_nuevo_grupo("Pruebas recorridos");
 	probar_recorridos();
-
 
 	return pa2m_mostrar_reporte();
 }

@@ -106,7 +106,6 @@ nodo_abb_t *nodo_abb_quitar(nodo_abb_t *raiz, void *elemento, abb_comparador com
 	return raiz;
 }
 
-
 void *abb_quitar(abb_t *arbol, void *elemento)
 {
 	if (!arbol || abb_vacio(arbol)) return NULL;

@@ -65,6 +65,16 @@ nodo_abb_t *nodo_max(nodo_abb_t *raiz)
 	return !raiz->derecha ? raiz : nodo_max(raiz->derecha);
 }
 
+/**
+ * Recibe la raíz de un árbol que no debería ser nula, un puntero al elemento a eliminar,
+ * la función comparadora, un puntero al contador del tamaño del árbol y un puntero para
+ * almacenar el elemento quitado. La función comparadora y el puntero al contador no pueden ser
+ * nulos.
+ * 
+ * Devuelve la raíz de un árbol con el elemento quitado, y el contador del tamaño habrá sido
+ * actualizado. En caso de no encontrar el elemento o haber provisto una raíz nula, devolverá
+ * NULL.
+ */
 nodo_abb_t *nodo_abb_quitar(nodo_abb_t *raiz, void *elemento, abb_comparador comparador, size_t *tamanio, void **quitado)
 {
 	if (!raiz) return NULL;
@@ -96,57 +106,6 @@ nodo_abb_t *nodo_abb_quitar(nodo_abb_t *raiz, void *elemento, abb_comparador com
 	return raiz;
 }
 
-/**
- * Recibe la raíz de un árbol que no debería ser nula, un puntero al elemento a eliminar,
- * la función comparadora, un puntero al contador del tamaño del árbol y un puntero para
- * almacenar el elemento quitado. La función comparadora y el puntero al contador no pueden ser
- * nulos.
- * 
- * Devuelve la raíz de un árbol con el elemento quitado, y el contador del tamaño habrá sido
- * actualizado. En caso de no encontrar el elemento o haber provisto una raíz nula, devolverá
- * NULL.
- */
-// nodo_abb_t *nodo_abb_quitar(nodo_abb_t *raiz, void *elemento, abb_comparador comparador, size_t *tamanio, void **quitado)
-// {
-// 	if (!raiz) return NULL;
-
-// 	int comparacion = comparador(elemento, raiz->elemento);
-
-// 	if (comparacion == 0) {
-// 		if (!raiz->izquierda && !raiz->derecha) {
-// 			if (quitado != NULL ) *quitado = raiz->elemento;
-// 			free(raiz);
-// 			raiz = NULL;
-// 			if (tamanio != NULL) (*tamanio)--;
-// 		} else if (!raiz->izquierda) {
-// 			nodo_abb_t *aux = raiz;
-// 			if (quitado != NULL ) *quitado = raiz->elemento;
-// 			raiz = raiz->derecha;
-// 			if (tamanio != NULL) (*tamanio)--;
-// 			free(aux);
-// 		} else if (!raiz->derecha) {
-// 			nodo_abb_t *aux = raiz;
-// 			if (quitado != NULL ) *quitado = raiz->elemento;
-// 			raiz = raiz->izquierda;
-// 			if (tamanio != NULL) (*tamanio)--;
-// 			free(aux);
-// 		} else {
-// 			nodo_abb_t *aux = nodo_max(raiz->izquierda);
-// 			if (quitado != NULL ) *quitado = raiz->elemento;
-// 			raiz->elemento = aux->elemento;
-// 			raiz->izquierda = nodo_abb_quitar(raiz->izquierda, aux->elemento, comparador, NULL, NULL);
-// 			if (tamanio != NULL) (*tamanio)--;
-// 		}
-// 	}
-
-// 	if (comparacion < 0) {
-// 		raiz->izquierda = nodo_abb_quitar(raiz->izquierda, elemento, comparador, tamanio, quitado);
-// 	} else if (comparacion > 0) {
-// 		raiz->derecha = nodo_abb_quitar(raiz->derecha, elemento, comparador, tamanio, quitado);
-// 	}
-
-// 	return raiz;
-// }
 
 void *abb_quitar(abb_t *arbol, void *elemento)
 {
@@ -158,6 +117,7 @@ void *abb_quitar(abb_t *arbol, void *elemento)
 
 	return quitado;
 }
+
 
 void *nodo_abb_buscar(nodo_abb_t *raiz, void *elemento, abb_comparador comparador)
 {

@@ -118,7 +118,12 @@ void *abb_quitar(abb_t *arbol, void *elemento)
 	return quitado;
 }
 
-
+/**
+ * Recibe la raíz de un árbol que no debería ser nula, un puntero al elemento buscado, y
+ * la función comparadora. La función comparadora no puede ser nula.
+ * 
+ * Devuelve el elemento encontrado o NULL en su defecto.
+ */
 void *nodo_abb_buscar(nodo_abb_t *raiz, void *elemento, abb_comparador comparador)
 {
 	if (!raiz) return NULL;
@@ -132,7 +137,7 @@ void *nodo_abb_buscar(nodo_abb_t *raiz, void *elemento, abb_comparador comparado
 
 void *abb_buscar(abb_t *arbol, void *elemento)
 {
-	if (!arbol || !elemento) return NULL;
+	if (!arbol) return NULL;
 
 	return nodo_abb_buscar(arbol->nodo_raiz, elemento, arbol->comparador);
 }
@@ -154,6 +159,13 @@ void abb_destruir(abb_t *arbol)
 	abb_destruir_todo(arbol, NULL);
 }
 
+/**
+ * Recibe la raíz de un árbol que no debería ser nula y un puntero a una función destructora,
+ * que puede ser nulo.
+ * 
+ * Destruye todos los elementos si se ha provisto una función destructora, y libera la
+ * memoria de cada nodo del árbol.
+ */
 void nodo_abb_destruir_todo(nodo_abb_t *raiz, void (*destructor)(void *))
 {
 	if (!raiz) return;
@@ -169,10 +181,19 @@ void nodo_abb_destruir_todo(nodo_abb_t *raiz, void (*destructor)(void *))
 void abb_destruir_todo(abb_t *arbol, void (*destructor)(void *))
 {
 	if (!arbol) return;
+
 	nodo_abb_destruir_todo(arbol->nodo_raiz, destructor);
 	free(arbol);
 }
 
+/**
+ * Recibe la raíz de un árbol, un puntero a una función de tipo booleana, un puntero a
+ * un elemento que será recibida por la función booleana, y un puntero al contador de
+ * invocaciones de la función.
+ * 
+ * Recorre el árbol de forma inorden hasta que la función pasada dé false para algún
+ * elemento, donde devuelve false, o se recorra todo el árbol donde devolverá true.
+ */
 bool inorden_para_cada(nodo_abb_t *raiz, bool (*funcion)(void *, void *), void *aux, size_t *funcion_invocaciones)
 {
 	if (!raiz) return true;
@@ -191,6 +212,14 @@ bool inorden_para_cada(nodo_abb_t *raiz, bool (*funcion)(void *, void *), void *
 	return true;
 }
 
+/**
+ * Recibe la raíz de un árbol, un puntero a una función de tipo booleana, un puntero a
+ * un elemento que será recibida por la función booleana, y un puntero al contador de
+ * invocaciones de la función.
+ * 
+ * Recorre el árbol de forma postorden hasta que la función pasada dé false para algún
+ * elemento, donde devuelve false, o se recorra todo el árbol donde devolverá true.
+ */
 bool postorden_para_cada(nodo_abb_t *raiz, bool (*funcion)(void *, void *), void *aux, size_t *funcion_invocaciones)
 {
 	if (!raiz) return true;
@@ -209,6 +238,14 @@ bool postorden_para_cada(nodo_abb_t *raiz, bool (*funcion)(void *, void *), void
 	return true;
 }
 
+/**
+ * Recibe la raíz de un árbol, un puntero a una función de tipo booleana, un puntero a
+ * un elemento que será recibida por la función booleana, y un puntero al contador de
+ * invocaciones de la función.
+ * 
+ * Recorre el árbol de forma preorden hasta que la función pasada dé false para algún
+ * elemento, donde devuelve false, o se recorra todo el árbol donde devolverá true.
+ */
 bool preorden_para_cada(nodo_abb_t *raiz, bool (*funcion)(void *, void *), void *aux, size_t *funcion_invocaciones)
 {
 	if (!raiz) return true;
@@ -255,6 +292,14 @@ size_t abb_con_cada_elemento(abb_t *arbol, abb_recorrido recorrido,
 	return funcion_invocaciones;
 }
 
+/**
+ * Recibe la raíz de un árbol, un puntero a un array donde guardar los elementos
+ * recorridos, el tamanio máximo del array y un puntero al contador de elementos
+ * recorridos.
+ * 
+ * Recorre el árbol de forma inorden hasta que se llene el array o se hayan
+ * recorrido todos los elementos.
+ */
 void inorden(nodo_abb_t *raiz, void **array, size_t tamanio_array, size_t *elementos_recorridos)
 {
 	if (!raiz || *elementos_recorridos == tamanio_array) return;
@@ -267,6 +312,14 @@ void inorden(nodo_abb_t *raiz, void **array, size_t tamanio_array, size_t *eleme
 	if (raiz->derecha) inorden(raiz->derecha, array, tamanio_array, elementos_recorridos);
 }
 
+/**
+ * Recibe la raíz de un árbol, un puntero a un array donde guardar los elementos
+ * recorridos, el tamanio máximo del array y un puntero al contador de elementos
+ * recorridos.
+ * 
+ * Recorre el árbol de forma preorden hasta que se llene el array o se hayan
+ * recorrido todos los elementos.
+ */
 void preorden(nodo_abb_t *raiz, void **array, size_t tamanio_array, size_t *elementos_recorridos)
 {
 	if (!raiz || *elementos_recorridos == tamanio_array) return;
@@ -279,6 +332,14 @@ void preorden(nodo_abb_t *raiz, void **array, size_t tamanio_array, size_t *elem
 	if (raiz->derecha) preorden(raiz->derecha, array, tamanio_array, elementos_recorridos);
 }
 
+/**
+ * Recibe la raíz de un árbol, un puntero a un array donde guardar los elementos
+ * recorridos, el tamanio máximo del array y un puntero al contador de elementos
+ * recorridos.
+ * 
+ * Recorre el árbol de forma postorden hasta que se llene el array o se hayan
+ * recorrido todos los elementos.
+ */
 void postorden(nodo_abb_t *raiz, void **array, size_t tamanio_array, size_t *elementos_recorridos)
 {
 	if (!raiz || *elementos_recorridos == tamanio_array) return;
